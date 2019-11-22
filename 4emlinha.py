@@ -33,8 +33,7 @@ def posicao_peca(tabuleiro):
 
 #está função retorna True se for feito 4 em linha
 def vitoria(tabuleiro):
-    vict = False
-    return vict
+    pass
 
 #está funão desenha o tabuleiro em pygame
 def desenhar_tabuleiro(tabuleiro):
@@ -45,9 +44,9 @@ def desenhar_tabuleiro(tabuleiro):
 
 	for c in range(NUM_COLUNAS):
 		for r in range(NUM_LINHAS):
-			if board[r][c] == 1:
+			if tabuleiro[r][c] == 1:
 				pygame.draw.circle(screen, PECA1, (int(c*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2), height-int(r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
-			elif board[r][c] == 2:
+			elif tabuleiro[r][c] == 2:
 				pygame.draw.circle(screen, PECA2, (int(c*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2), height-int(r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
 	pygame.display.update()
 
@@ -69,7 +68,8 @@ def main():
     while not(game_over):
         for event in pygame.event.get():
     		if event.type == pygame.QUIT:
-    			sys.exit()
+    			sys.exit(0)
+
             if event.type == pygame.MOUSEBUTTONDOWN:
 				posx = event.pos[0]
 				col = int(math.floor(posx/SQUARESIZE))
