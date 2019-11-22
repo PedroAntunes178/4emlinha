@@ -6,13 +6,15 @@ import math
 
 #variaveis globais
 #numeros magicos
-NUM_COLUNAS = 6
-NUM_LINHAS = 7
+NUM_COLUNAS = 7
+NUM_LINHAS = 6
 MEDIDA_POR_QUADRADO = 100 #isto está em pixeis
 RAIO_PECA = int(MEDIDA_POR_QUADRADO/2 - 5)
 #cores
 AZUL_NEEC = (0, 157, 224)
 PRETO = (0, 0, 0)
+PECA1 = (225, 0, 0)
+PECA2 = (0, 225, 225)
 
 #esta função está a criar uma matriz de zeros, isto para simular o nosso tabuleiro com x colunas e y linhas
 def criar_tabuleiro():
@@ -36,7 +38,7 @@ def vitoria(tabuleiro):
     pass
 
 #está funão desenha o tabuleiro em pygame
-def desenhar_tabuleiro(tabuleiro):
+def desenhar_tabuleiro(tabuleiro, screen):
 	for c in range(NUM_COLUNAS):
 		for r in range(NUM_LINHAS):
 			pygame.draw.rect(screen, AZUL_NEEC, (c*MEDIDA_POR_QUADRADO, r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
@@ -46,8 +48,10 @@ def desenhar_tabuleiro(tabuleiro):
 		for r in range(NUM_LINHAS):
 			if tabuleiro[r][c] == 1:
 				pygame.draw.circle(screen, PECA1, (int(c*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2), height-int(r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
+                #gameDisplay.blit(img_peca1, (int(c*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2), height-int(r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2)))
 			elif tabuleiro[r][c] == 2:
 				pygame.draw.circle(screen, PECA2, (int(c*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2), height-int(r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
+                #gameDisplay.blit(img_peca2, (int(c*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2), height-int(r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2)))
 	pygame.display.update()
 
 #está função é onde vai correr o jogo
@@ -61,18 +65,24 @@ def main():
     height = (NUM_LINHAS+1) * MEDIDA_POR_QUADRADO
     size = (width, height)
     screen = pygame.display.set_mode(size)
-    desenhar_tabuleiro(tabuleiro)
+    desenhar_tabuleiro(tabuleiro, screen)
     pygame.display.update()
     myfont = pygame.font.SysFont("monospace", 75)
 
+    #image_url = "http://matplotlib.org/_images/fill_demo.png"    # on a webpage right click on the image you want and use Copy image URL
+    #image_str = urlopen(image_url).read()
+    #img_peca1 = io.BytesIO(image_str)      # create a file object (stream)
+    #image_url = "http://matplotlib.org/_images/fill_demo.png"    # on a webpage right click on the image you want and use Copy image URL
+    #image_str = urlopen(image_url).read()
+    #img_peca2 = io.BytesIO(image_str)      # create a file object (stream)
+
     while not(game_over):
         for event in pygame.event.get():
-    		if event.type == pygame.QUIT:
-    			sys.exit(0)
-
-            if event.type == pygame.MOUSEBUTTONDOWN:
-				posx = event.pos[0]
-				col = int(math.floor(posx/SQUARESIZE))
+            if event.type == pygame.QUIT :
+                sys.exit(0)
+            if event.type == pygame.MOUSEBUTTONDOWN :
+                posx = event.pos[0]
+                col = int(math.floor(posx/SQUARESIZE))
                 if vez_de == 0:
                     pass
                 else:
