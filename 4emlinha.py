@@ -38,7 +38,18 @@ def vitoria(tabuleiro):
 
 #está funão desenha o tabuleiro em pygame
 def desenhar_tabuleiro(tabuleiro):
-    pass
+	for c in range(NUM_COLUNAS):
+		for r in range(NUM_LINHAS):
+			pygame.draw.rect(screen, AZUL_NEEC, (c*MEDIDA_POR_QUADRADO, r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
+			pygame.draw.circle(screen, PRETO, (int(c*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2), int(r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
+
+	for c in range(NUM_COLUNAS):
+		for r in range(NUM_LINHAS):
+			if board[r][c] == 1:
+				pygame.draw.circle(screen, PECA1, (int(c*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2), height-int(r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
+			elif board[r][c] == 2:
+				pygame.draw.circle(screen, PECA2, (int(c*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2), height-int(r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
+	pygame.display.update()
 
 #está função é onde vai correr o jogo
 def main():
@@ -55,7 +66,7 @@ def main():
     pygame.display.update()
     myfont = pygame.font.SysFont("monospace", 75)
 
-    while !(game_over):
+    while not(game_over):
         for event in pygame.event.get():
     		if event.type == pygame.QUIT:
     			sys.exit()
