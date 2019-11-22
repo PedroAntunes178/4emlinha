@@ -84,14 +84,21 @@ def main():
                 if vez_de == 0:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1)):
                         vez_de += 1
-                    game_over = verifica(tabuleiro)
-                    desenhar_tabuleiro(tabuleiro, screen)
+                    if verifica(tabuleiro):
+						label = myfont.render("Player 1 wins!!", 1, PECA1)
+						screen.blit(label, (40,10))
+                        game_over = True
                 else:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2)):
                         vez_de += 1
-                    game_over = verifica(tabuleiro)
-                    desenhar_tabuleiro(tabuleiro, screen)
+                    if verifica(tabuleiro):
+						label = myfont.render("Player 2 wins!!", 1, PECA2)
+						screen.blit(label, (40,10))
+                        game_over = True
                 vez_de += 1
                 vez_de = vez_de%2
+                desenhar_tabuleiro(tabuleiro, screen)
+                imprimir_tabuleiro(tabuleiro)
+
 
 main()
