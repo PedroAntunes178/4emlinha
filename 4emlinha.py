@@ -43,7 +43,32 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player):
     return False
 
 #esta função retorna True se for feito 4 em linha
-def verifica(tabuleiro):
+def verifica(tabuleiro, peca ):
+   # check horizontal spaces
+    for y in range(NUM_COLUNAS-1):
+        for x in range(NUM_LINHAS - 1 - 3):
+            print(tabuleiro[x][y])
+            if tabuleiro[x][y] == peca and tabuleiro[x+1][y] == peca and tabuleiro[x+2][y] == peca and tabuleiro[x+3][y] == peca:
+                return True
+
+    # check vertical spaces
+    for x in range(NUM_COLUNAS - 1):
+        for y in range(NUM_LINHAS - 1 - 3):
+            if tabuleiro[x][y] == peca and tabuleiro[x][y+1] == peca and tabuleiro[x][y+2] == peca and tabuleiro[x][y+3] == peca:
+                return True
+
+    # check / diagonal spaces
+    for x in range(NUM_COLUNAS- 1 - 3):
+        for y in range(3, NUM_LINHAS- 1):
+            if tabuleiro[x][y] == peca and tabuleiro[x+1][y-1] == peca and tabuleiro[x+2][y-2] == peca and tabuleiro[x+3][y-3] == peca:
+                return True
+
+    # check \ diagonal spaces
+    for x in range(NUM_COLUNAS- 1 - 3):
+        for y in range(NUM_LINHAS - 1- 3):
+            if tabuleiro[x][y] == peca and tabuleiro[x+1][y+1] == peca and tabuleiro[x+2][y+2] == peca and tabuleiro[x+3][y+3] == peca:
+                return True
+
     return False
 
 #esta função desenha o tabuleiro em pygame
@@ -79,21 +104,21 @@ def main():
     while not(game_over):
         for event in pygame.event.get():
             if event.type == pygame.QUIT :
-                sys.exit(0)
+                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN :
                 posx = event.pos[0]
                 col = int(math.floor(posx/MEDIDA_POR_QUADRADO))
                 if vez_de == 0:
-                    if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1)):
+                    if not(colocar_peca_no_tabuleiro(tabuleiro , col, 1)):
                         vez_de += 1
-                    if verifica(tabuleiro):
+                    if verifica(tabuleiro.astype(int), 1):
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                         game_over = True
                 else:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2)):
                         vez_de += 1
-                    if verifica(tabuleiro):
+                    if verifica(tabuleiro.astype(int), 2):
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
                         screen.blit(label, (40,10))
                         game_over = True
