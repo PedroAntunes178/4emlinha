@@ -1,4 +1,4 @@
-#importes
+#imports
 import numpy as np
 import pygame
 import sys
@@ -10,18 +10,19 @@ NUM_COLUNAS = 7
 NUM_LINHAS = 6
 MEDIDA_POR_QUADRADO = 100 #isto está em pixeis
 RAIO_PECA = int(MEDIDA_POR_QUADRADO/2 - 5)
+
 #cores
 AZUL_NEEC = (0, 157, 224)
 PRETO = (0, 0, 0)
 PECA1 = (225, 0, 0)
 PECA2 = (0, 225, 225)
 
-#esta função está a criar uma matriz de zeros, isto para simular o nosso tabuleiro com x colunas e y linhas
+#esta função cria uma matriz de zeros, neste caso é o nosso tabuleiro com x colunas e y linhas
 def criar_tabuleiro():
-    tabuleiro = np.zeros((NUM_LINHAS,NUM_COLUNAS))
-    return tabuleiro
+	tabuleiro = np.zeros((NUM_LINHAS,NUM_COLUNAS))
+	return tabuleiro
 
-#esta função serve para imprimir o tabuleiro/matriz no terminar da forma como é suposto a vermos (ou seja com o [0][0] no canto inferior esquerdo, se fizesse só print este estaria no canto superior)
+#esta função serve para imprimir o tabuleiro/matriz no terminal (com o [0][0] no canto inferior esquerdo, se fizesse só print este estaria no canto superior)????
 def imprimir_tabuleiro(tabuleiro):
 	print(np.flip(tabuleiro, 0))
 
