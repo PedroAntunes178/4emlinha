@@ -8,7 +8,7 @@ import math
 #numeros magicos
 NUM_COLUNAS = 7
 NUM_LINHAS = 6
-MEDIDA_POR_QUADRADO = 100 #isto está em pixeis
+MEDIDA_POR_QUADRADO = 100 #em pixeis
 RAIO_PECA = int(MEDIDA_POR_QUADRADO/2 - 5)
 
 #cores
@@ -25,6 +25,7 @@ def criar_tabuleiro():
 #esta função serve para imprimir o tabuleiro/matriz no terminal (com o [0][0] no canto inferior esquerdo, se fizesse só print este estaria no canto superior)????
 def imprimir_tabuleiro(tabuleiro):
 	print(np.flip(tabuleiro, 0))
+	print('')
 
 #esta função verifica se a coluna selecionada tem espaço para colocar a peça
 #def coluna_cheia(tabuleiro, col):
@@ -42,11 +43,11 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player):
     return False
 
 #esta função retorna True se for feito 4 em linha
-def vitoria(tabuleiro):
+def verifica(tabuleiro):
     return False
 
-#esta funão desenha o tabuleiro em pygame
-def desenhar_tabuleiro(tabuleiro, screen):
+#esta função desenha o tabuleiro em pygame
+def desenhar_tabuleiro(tabuleiro, screen, height):
 	for c in range(NUM_COLUNAS):
 		for r in range(NUM_LINHAS):
 			pygame.draw.rect(screen, AZUL_NEEC, (c*MEDIDA_POR_QUADRADO, r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
@@ -71,7 +72,7 @@ def main():
     height = (NUM_LINHAS+1) * MEDIDA_POR_QUADRADO
     size = (width, height)
     screen = pygame.display.set_mode(size)
-    desenhar_tabuleiro(tabuleiro, screen)
+    desenhar_tabuleiro(tabuleiro, screen, height)
     pygame.display.update()
     myfont = pygame.font.SysFont("monospace", 75)
 
@@ -81,24 +82,24 @@ def main():
                 sys.exit(0)
             if event.type == pygame.MOUSEBUTTONDOWN :
                 posx = event.pos[0]
-                col = int(math.floor(posx/SQUARESIZE))
+                col = int(math.floor(posx/MEDIDA_POR_QUADRADO))
                 if vez_de == 0:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1)):
                         vez_de += 1
                     if verifica(tabuleiro):
-						label = myfont.render("Player 1 wins!!", 1, PECA1)
-						screen.blit(label, (40,10))
+                        label = myfont.render("Player 1 wins!!", 1, PECA1)
+                        screen.blit(label, (40,10))
                         game_over = True
                 else:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2)):
                         vez_de += 1
                     if verifica(tabuleiro):
-						label = myfont.render("Player 2 wins!!", 1, PECA2)
-						screen.blit(label, (40,10))
+                        label = myfont.render("Player 2 wins!!", 1, PECA2)
+                        screen.blit(label, (40,10))
                         game_over = True
                 vez_de += 1
                 vez_de = vez_de%2
-                desenhar_tabuleiro(tabuleiro, screen)
+                desenhar_tabuleiro(tabuleiro, screen, height)
                 imprimir_tabuleiro(tabuleiro)
 
 
