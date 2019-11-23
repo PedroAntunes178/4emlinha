@@ -7,7 +7,7 @@ import math
 #variaveis globais
 #numeros magicos
 NUM_COLUNAS = 7
-NUM_LINHAS = 6
+NUM_LINHAS = 7
 MEDIDA_POR_QUADRADO = 100 #em pixeis
 RAIO_PECA = int(MEDIDA_POR_QUADRADO/2 - 5)
 
@@ -44,31 +44,29 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player):
 
 #esta função retorna True se for feito 4 em linha
 def verifica(tabuleiro, peca ):
-   # check horizontal spaces
-    for y in range(NUM_COLUNAS-1):
-        for x in range(NUM_LINHAS - 1 - 3):
-            print(tabuleiro[x][y])
-            if tabuleiro[x][y] == peca and tabuleiro[x+1][y] == peca and tabuleiro[x+2][y] == peca and tabuleiro[x+3][y] == peca:
+    # Verificacao horizontal
+    for x in range(NUM_COLUNAS-1-3):
+        for y in range(NUM_LINHAS-1):
+            if tabuleiro[y][x] == peca and tabuleiro[y][x+1] == peca and tabuleiro[y][x+2] == peca and tabuleiro[y][x+3] == peca:
                 return True
 
-    # check vertical spaces
-    for x in range(NUM_COLUNAS - 1):
-        for y in range(NUM_LINHAS - 1 - 3):
-            if tabuleiro[x][y] == peca and tabuleiro[x][y+1] == peca and tabuleiro[x][y+2] == peca and tabuleiro[x][y+3] == peca:
+	# Verificacao vertical
+    for x in range(NUM_COLUNAS-1):
+        for y in range(NUM_LINHAS-1-3):
+            if tabuleiro[y][x] == peca and tabuleiro[y+1][x] == peca and tabuleiro[y+2][x] == peca and tabuleiro[y+3][x] == peca:
                 return True
 
-    # check / diagonal spaces
-    for x in range(NUM_COLUNAS- 1 - 3):
-        for y in range(3, NUM_LINHAS- 1):
-            if tabuleiro[x][y] == peca and tabuleiro[x+1][y-1] == peca and tabuleiro[x+2][y-2] == peca and tabuleiro[x+3][y-3] == peca:
+	# Verificacao diagonal esquerda -> direita (baixo->cima)
+    for x in range(NUM_COLUNAS-1-3):
+        for y in range(NUM_LINHAS-1-3):
+            if tabuleiro[y][x] == peca and tabuleiro[y+1][x+1] == peca and tabuleiro[y+2][x+2] == peca and tabuleiro[y+3][x+3] == peca:
                 return True
 
-    # check \ diagonal spaces
-    for x in range(NUM_COLUNAS- 1 - 3):
-        for y in range(NUM_LINHAS - 1- 3):
-            if tabuleiro[x][y] == peca and tabuleiro[x+1][y+1] == peca and tabuleiro[x+2][y+2] == peca and tabuleiro[x+3][y+3] == peca:
+	# Verificacao diagonal direita -> esquerda (cima->baixo)
+    for x in range(NUM_COLUNAS-1 -3):
+        for y in range(3, NUM_LINHAS - 1):
+            if tabuleiro[y][x] == peca and tabuleiro[y-1][x+1] == peca and tabuleiro[y-2][x+2] == peca and tabuleiro[y-3][x+3] == peca:
                 return True
-
     return False
 
 #esta função desenha o tabuleiro em pygame
