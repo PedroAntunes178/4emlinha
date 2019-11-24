@@ -45,7 +45,7 @@ def vitoria(tabuleiro):
     return False
 
 #esta funão desenha o tabuleiro em pygame
-def desenhar_tabuleiro(tabuleiro, screen):
+def desenhar_tabuleiro(tabuleiro, screen, height):
 	for c in range(NUM_COLUNAS):
 		for r in range(NUM_LINHAS):
 			pygame.draw.rect(screen, AZUL_NEEC, (c*MEDIDA_POR_QUADRADO, r*MEDIDA_POR_QUADRADO+MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
@@ -70,7 +70,7 @@ def main():
     height = (NUM_LINHAS+1) * MEDIDA_POR_QUADRADO
     size = (width, height)
     screen = pygame.display.set_mode(size)
-    desenhar_tabuleiro(tabuleiro, screen)
+    desenhar_tabuleiro(tabuleiro, screen, height)
     pygame.display.update()
     myfont = pygame.font.SysFont("monospace", 75)
 
@@ -97,7 +97,7 @@ def main():
                         game_over = True
                 vez_de += 1
                 vez_de = vez_de%2
-                desenhar_tabuleiro(tabuleiro, screen)
+                desenhar_tabuleiro(tabuleiro, screen, height)
                 imprimir_tabuleiro(tabuleiro)
 
 
