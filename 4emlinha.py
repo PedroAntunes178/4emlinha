@@ -121,7 +121,7 @@ def main():
                 vez_de = vez_de%2
                 desenhar_tabuleiro(tabuleiro, screen, height)
                 imprimir_tabuleiro(tabuleiro)
-                if game_over:
-                    time.sleep(3.00)
+            if game_over:
+                time.sleep(3.00)
 
 main()
