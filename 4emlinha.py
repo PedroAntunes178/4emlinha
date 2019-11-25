@@ -3,6 +3,7 @@ import numpy as np
 import pygame
 import sys
 import math
+import time
 
 #variaveis globais
 #numeros magicos
@@ -41,7 +42,28 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player):
     return False
 
 #esta função retorna True se for feito 4 em linha
-def vitoria(tabuleiro):
+def vitoria(tabuleiro, peca):
+    # Verificacao horizontal
+    for x in range(NUM_COLUNAS-3):
+        for y in range(NUM_LINHAS):
+            if tabuleiro[y][x] == peca and tabuleiro[y][x+1] == peca and tabuleiro[y][x+2] == peca and tabuleiro[y][x+3] == peca:
+                return True
+    # Verificacao vertical
+    for x in range(NUM_COLUNAS):
+        for y in range(NUM_LINHAS-3):
+            if tabuleiro[y][x] == peca and tabuleiro[y+1][x] == peca and tabuleiro[y+2][x] == peca and tabuleiro[y+3][x] == peca:
+                return True
+    # Verificacao diagonal esquerda -> direita (baixo->cima)
+    for x in range(NUM_COLUNAS-3):
+        for y in range(NUM_LINHAS-3):
+            if tabuleiro[y][x] == peca and tabuleiro[y+1][x+1] == peca and tabuleiro[y+2][x+2] == peca and tabuleiro[y+3][x+3] == peca:
+                return True
+    # Verificacao diagonal direita -> esquerda (cima->baixo)
+    for x in range(NUM_COLUNAS-3):
+        for y in range(3, NUM_LINHAS):
+            if tabuleiro[y][x] == peca and tabuleiro[y-1][x+1] == peca and tabuleiro[y-2][x+2] == peca and tabuleiro[y-3][x+3] == peca:
+                return True
+
     return False
 
 #esta funão desenha o tabuleiro em pygame
@@ -84,14 +106,14 @@ def main():
                 if vez_de == 0:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1)):
                         vez_de += 1
-                    if vitoria(tabuleiro):
+                    if vitoria(tabuleiro, 1):
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                         game_over = True
                 else:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2)):
                         vez_de += 1
-                    if vitoria(tabuleiro):
+                    if vitoria(tabuleiro, 2):
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
                         screen.blit(label, (40,10))
                         game_over = True
@@ -99,6 +121,7 @@ def main():
                 vez_de = vez_de%2
                 desenhar_tabuleiro(tabuleiro, screen, height)
                 imprimir_tabuleiro(tabuleiro)
-
+                if game_over:
+                    time.sleep(3.00)
 
 main()
