@@ -46,50 +46,56 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player):
 def verifica(tabuleiro, linha, coluna):
     h = 1
     d = 1
-
+    x = 1
     try:
         if(tabuleiro[linha][coluna] == tabuleiro[linha-1][coluna] == tabuleiro[linha-2][coluna] == tabuleiro[linha-3][coluna]):
             return True
     except: 
         pass
 
-    for x in [1,2,3]:
-            try: 
-                if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna-x]):
+   
+    try: 
+        for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna-x]):
+                h = h+1
+                print ('1:',h)
+                if(h == 4):
+                    return True;
+        for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna+x]):
                     h = h+1
-                    print ('1:',h)
+                    print ('1b:',h)
                     if(h == 4):
                         return True;
-                elif(tabuleiro[linha][coluna] == tabuleiro[linha][coluna+x]):
-                    h = h+1
-                    print ('2:',h)
-                    if(h == 4):
-                        return True;
-            except:
-                pass
-            try:
-                if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna-x]):
-                    d = d+1
-                    print ('d1:',d)
-                    if(d == 4):
-                        return True;
-                elif(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna+x]):
-                    d = d+1
-                    print ('d1:',d)
-                    if(d == 4):
-                        return True;
-                elif(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna+x]):
-                    d = d+1
-                    print ('d2:',d)
-                    if(d == 4):
-                        return True;
-                elif(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna-x]):
-                    d = d+1
-                    print ('d2:',d)
-                    if(d == 4):
-                        return True;
-            except:
-                pass
+    except:
+        pass
+    try:
+         for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna-x]):
+                d = d+1
+                print ('d1:',d)
+                if(d == 4):
+                    return True;
+         for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna+x]):
+                d = d+1
+                print ('d1.:',d)
+                if(d == 4):
+                    return True;
+         for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna+x]):
+                d = d+1
+                print ('d2.:',d)
+                if(d == 4):
+                    return True;
+         for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna-x]):
+                d = d+1
+                print ('d2..:',d)
+                if(d == 4):
+                    return True;
+    except:
+        pass
             
   
 
