@@ -139,13 +139,15 @@ def main():
                 col = int(math.floor(posx/MEDIDA_POR_QUADRADO))
                 if vez_de == 0:
                     linha = colocar_peca_no_tabuleiro(tabuleiro , col, 1)
-                        #vez_de += 1
+                    if linha == -1:    
+                        vez_de += 1
                     if verifica(tabuleiro.astype(int), linha, col):
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                 else:
                     linha = colocar_peca_no_tabuleiro(tabuleiro, col, 2)
-                        #vez_de += 1
+                    if linha == -1:    
+                        vez_de += 1
                     if verifica(tabuleiro.astype(int), linha, col):
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
                         screen.blit(label, (40,10))
