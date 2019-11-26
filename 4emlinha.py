@@ -39,35 +39,59 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player):
     for linha in range(NUM_LINHAS):
         if tabuleiro[linha][col] == 0:
             tabuleiro[linha][col] = player
-            return True
-    return False
+            return linha
+    return -1
 
 #esta função retorna True se for feito 4 em linha
-def verifica(tabuleiro, peca ):
-    # Verificacao horizontal
-    for x in range(NUM_COLUNAS-1-3):
-        for y in range(NUM_LINHAS-1):
-            if tabuleiro[y][x] == peca and tabuleiro[y][x+1] == peca and tabuleiro[y][x+2] == peca and tabuleiro[y][x+3] == peca:
-                return True
+def verifica(tabuleiro, linha, coluna):
+    h = 1
+    d = 1
 
-	# Verificacao vertical
-    for x in range(NUM_COLUNAS-1):
-        for y in range(NUM_LINHAS-1-3):
-            if tabuleiro[y][x] == peca and tabuleiro[y+1][x] == peca and tabuleiro[y+2][x] == peca and tabuleiro[y+3][x] == peca:
-                return True
+    try:
+        if(tabuleiro[linha][coluna] == tabuleiro[linha-1][coluna] == tabuleiro[linha-2][coluna] == tabuleiro[linha-3][coluna]):
+            return True
+    except: 
+        pass
 
-	# Verificacao diagonal esquerda -> direita (baixo->cima)
-    for x in range(NUM_COLUNAS-1-3):
-        for y in range(NUM_LINHAS-1-3):
-            if tabuleiro[y][x] == peca and tabuleiro[y+1][x+1] == peca and tabuleiro[y+2][x+2] == peca and tabuleiro[y+3][x+3] == peca:
-                return True
-
-	# Verificacao diagonal direita -> esquerda (cima->baixo)
-    for x in range(NUM_COLUNAS-1 -3):
-        for y in range(3, NUM_LINHAS - 1):
-            if tabuleiro[y][x] == peca and tabuleiro[y-1][x+1] == peca and tabuleiro[y-2][x+2] == peca and tabuleiro[y-3][x+3] == peca:
-                return True
-    return False
+    for x in [1,2,3]:
+            try: 
+                if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna-x]):
+                    h = h+1
+                    print ('1:',h)
+                    if(h == 4):
+                        return True;
+                elif(tabuleiro[linha][coluna] == tabuleiro[linha][coluna+x]):
+                    h = h+1
+                    print ('2:',h)
+                    if(h == 4):
+                        return True;
+            except:
+                pass
+            try:
+                if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna-x]):
+                    d = d+1
+                    print ('d1:',d)
+                    if(d == 4):
+                        return True;
+                elif(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna+x]):
+                    d = d+1
+                    print ('d1:',d)
+                    if(d == 4):
+                        return True;
+                elif(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna+x]):
+                    d = d+1
+                    print ('d2:',d)
+                    if(d == 4):
+                        return True;
+                elif(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna-x]):
+                    d = d+1
+                    print ('d2:',d)
+                    if(d == 4):
+                        return True;
+            except:
+                pass
+            
+  
 
 #esta função desenha o tabuleiro em pygame
 def desenhar_tabuleiro(tabuleiro, screen, height):
@@ -108,15 +132,15 @@ def main():
                 posx = event.pos[0]
                 col = int(math.floor(posx/MEDIDA_POR_QUADRADO))
                 if vez_de == 0:
-                    if not(colocar_peca_no_tabuleiro(tabuleiro , col, 1)):
-                        vez_de += 1
-                    if verifica(tabuleiro.astype(int), 1):
+                    linha = colocar_peca_no_tabuleiro(tabuleiro , col, 1)
+                        #vez_de += 1
+                    if verifica(tabuleiro.astype(int), linha, col):
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                 else:
-                    if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2)):
-                        vez_de += 1
-                    if verifica(tabuleiro.astype(int), 2):
+                    linha = colocar_peca_no_tabuleiro(tabuleiro, col, 2)
+                        #vez_de += 1
+                    if verifica(tabuleiro.astype(int), linha, col):
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
                         screen.blit(label, (40,10))
                 vez_de += 1
