@@ -11,7 +11,7 @@ NUM_COLUNAS = 7
 NUM_LINHAS = 6
 MEDIDA_POR_QUADRADO = 100 #isto está em pixeis
 RAIO_PECA = int(MEDIDA_POR_QUADRADO/2 - 5)
-#cores
+# definição de cores
 AZUL_NEEC = (0, 157, 224)
 PRETO = (0, 0, 0)
 PECA1 = (225, 0, 0)
