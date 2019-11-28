@@ -53,7 +53,6 @@ def verifica(tabuleiro, linha, coluna):
     except:
         pass
 
-
     try:
         for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna-x]):
@@ -61,12 +60,16 @@ def verifica(tabuleiro, linha, coluna):
                 print ('1:',h)
                 if(h == 4):
                     return True;
+            else:
+                break;
         for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna+x]):
                     h = h+1
                     print ('1b:',h)
                     if(h == 4):
                         return True;
+            else:
+                break;
     except:
         pass
     try:
@@ -76,24 +79,32 @@ def verifica(tabuleiro, linha, coluna):
                 print ('d1:',d)
                 if(d == 4):
                     return True;
+            else:
+                break;
          for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna+x]):
                 d = d+1
                 print ('d1.:',d)
                 if(d == 4):
                     return True;
+            else:
+                break;
          for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna+x]):
                 d = d+1
                 print ('d2.:',d)
                 if(d == 4):
                     return True;
+            else:
+                break;
          for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna-x]):
                 d = d+1
                 print ('d2..:',d)
                 if(d == 4):
                     return True;
+            else:
+                break;
     except:
         pass
 
