@@ -14,7 +14,7 @@ RAIO_PECA = int(MEDIDA_POR_QUADRADO/2 - 5)
 # definição de cores
 AZUL_NEEC = (0, 157, 224)
 PRETO = (0, 0, 0)
-BRANCO = (225, 225, 225)
+BRANCO = (255, 255, 255)
 PECA1 = (225, 0, 0)
 PECA2 = (0, 225, 225)
 
@@ -26,13 +26,6 @@ def criar_tabuleiro():
 #esta função serve para imprimir o tabuleiro/matriz no terminar da forma como é suposto a vermos (ou seja com o [0][0] no canto inferior esquerdo, se fizesse só print este estaria no canto superior)
 def imprimir_tabuleiro(tabuleiro):
 	print(np.flip(tabuleiro, 0))
-
-#esta função verifica se a coluna selecionada tem espaço para colocar a peça
-#def coluna_cheia(tabuleiro, col):
-#    if tabuleiro[0][col] == 0:
-#        return False
-#    else:
-#        return True
 
 #esta função vê qual é a casa da matriz em que a peça vai ficar e posiciona a peça no tabuleiro
 def colocar_peca_no_tabuleiro(tabuleiro, col, player, lin):
@@ -123,12 +116,13 @@ def main():
                 vez_de += 1
                 vez_de = vez_de%2
                 desenhar_tabuleiro(tabuleiro, screen, altura)
-                imprimir_tabuleiro(tabuleiro)
+                #imprimir_tabuleiro(tabuleiro)
             if game_over:
-                pygame.draw.rect(screen, PRETO, (int((largura-MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
                 for k in range(3):
-                    time_num = myfont.render(str(k), 1, PECA2)
-                    screen.blit(time_num, (int((largura-MEDIDA_POR_QUADRADO)/2),int((altura-MEDIDA_POR_QUADRADO)/2)))
+                    pygame.draw.rect(screen, BRANCO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , 3*MEDIDA_POR_QUADRADO, 2*MEDIDA_POR_QUADRADO))
+                    time_num = myfont.render(str(3-k), 1, PRETO)
+                    screen.blit(time_num, (int((largura-2*MEDIDA_POR_QUADRADO)/2),int(altura/2)))
+                    pygame.display.update()
                     time.sleep(1.00)
 
 main()
