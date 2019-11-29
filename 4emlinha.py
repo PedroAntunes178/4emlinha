@@ -41,6 +41,7 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player, linha):
 			return True
 	return False
 
+
 #esta função retorna True se for feito 4 em linha
 def vitoria(tabuleiro, linha, coluna):
     h = 1
