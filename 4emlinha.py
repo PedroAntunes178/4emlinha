@@ -18,6 +18,11 @@ BRANCO = (255, 255, 255)
 PECA1 = (225, 0, 0)
 PECA2 = (0, 225, 225)
 
+class botao():
+	def __init__():
+		pass
+	def clicked():
+		pass
 #esta função está a criar uma matriz de zeros, isto para simular o nosso tabuleiro com x colunas e y linhas
 def criar_tabuleiro():
     tabuleiro = np.zeros((NUM_LINHAS,NUM_COLUNAS))
@@ -28,11 +33,11 @@ def imprimir_tabuleiro(tabuleiro):
 	print(np.flip(tabuleiro, 0))
 
 #esta função vê qual é a casa da matriz em que a peça vai ficar e posiciona a peça no tabuleiro
-def colocar_peca_no_tabuleiro(tabuleiro, col, player, lin):
+def colocar_peca_no_tabuleiro(tabuleiro, col, player, linha):
+	linha = 0
     for linha in range(NUM_LINHAS):
         if tabuleiro[linha][col] == 0:
             tabuleiro[linha][col] = player
-            lin = linha
             return True
     return False
 
@@ -98,16 +103,16 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN :
                 posx = event.pos[0]
                 col = int(math.floor(posx/MEDIDA_POR_QUADRADO))
-                lin = -1
+                linha = 0
                 if vez_de == 0:
-                    if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1, lin)):
+                    if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1, linha)):
                         vez_de += 1
                     if vitoria(tabuleiro, 1):
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                         game_over = True
                 else:
-                    if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2, lin)):
+                    if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2, linha)):
                         vez_de += 1
                     if vitoria(tabuleiro, 2):
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
@@ -119,10 +124,14 @@ def main():
                 #imprimir_tabuleiro(tabuleiro)
             if game_over:
                 for k in range(3):
-                    pygame.draw.rect(screen, BRANCO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , 3*MEDIDA_POR_QUADRADO, 2*MEDIDA_POR_QUADRADO))
-                    time_num = myfont.render(str(3-k), 1, PRETO)
-                    screen.blit(time_num, (int((largura-2*MEDIDA_POR_QUADRADO)/2),int(altura/2)))
-                    pygame.display.update()
-                    time.sleep(1.00)
+					for event in pygame.event.get():
+						if event.type == pygame.MOUSEBUTTONDOWN :
+							pos = pygame.mouse.get_pos()
+
+                pygame.draw.rect(screen, BRANCO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , 3*MEDIDA_POR_QUADRADO, 2*MEDIDA_POR_QUADRADO))
+                time_num = myfont.render(str(3-k), 1, PRETO)
+                screen.blit(time_num, (int((largura-2*MEDIDA_POR_QUADRADO)/2),int(altura/2)))
+                pygame.display.update()
+                time.sleep(1.00)
 
 main()
