@@ -36,7 +36,7 @@ def imprimir_tabuleiro(tabuleiro):
 def colocar_peca_no_tabuleiro(tabuleiro, col, player, linha):
 	linha = 0
     for linha in range(NUM_LINHAS):
-        if tabuleiro[linha][col] == 0:
+		if tabuleiro[linha][col] == 0:
             tabuleiro[linha][col] = player
             return True
     return False
