@@ -45,15 +45,15 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player):
 #esta função retorna True se for feito 4 em linha
 def verifica(tabuleiro, linha, coluna):
     h = 1
-    d = 1
-    x = 1
+    d1 = 1
+    d2 = 1
     try:
         if(tabuleiro[linha][coluna] == tabuleiro[linha-1][coluna] == tabuleiro[linha-2][coluna] == tabuleiro[linha-3][coluna]):
             return True
-    except: 
+    except:
         pass
 
-    try: 
+    try:
         for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna-x]):
                 h = h+1
@@ -75,40 +75,38 @@ def verifica(tabuleiro, linha, coluna):
     try:
          for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna-x]):
-                d = d+1
-                print ('d1:',d)
-                if(d == 4):
+                d1 = d1+1
+                print ('d1:',d1)
+                if(d1 == 4):
                     return True;
             else:
                 break;
          for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna+x]):
-                d = d+1
-                print ('d1.:',d)
-                if(d == 4):
+                d1 = d1+1
+                print ('d1.:',d1)
+                if(d1 == 4):
                     return True;
             else:
                 break;
          for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna+x]):
-                d = d+1
-                print ('d2.:',d)
-                if(d == 4):
+                d2 = d2+1
+                print ('d2.:',d2)
+                if(d2 == 4):
                     return True;
             else:
                 break;
          for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna-x]):
-                d = d+1
-                print ('d2..:',d)
-                if(d == 4):
+                d2 = d2+1
+                print ('d2..:',d2)
+                if(d2 == 4):
                     return True;
             else:
                 break;
     except:
         pass
-            
-  
 
 #esta função desenha o tabuleiro em pygame
 def desenhar_tabuleiro(tabuleiro, screen, height):
@@ -150,14 +148,14 @@ def main():
                 col = int(math.floor(posx/MEDIDA_POR_QUADRADO))
                 if vez_de == 0:
                     linha = colocar_peca_no_tabuleiro(tabuleiro , col, 1)
-                    if linha == -1:    
+                    if linha == -1:
                         vez_de += 1
                     if verifica(tabuleiro.astype(int), linha, col):
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                 else:
                     linha = colocar_peca_no_tabuleiro(tabuleiro, col, 2)
-                    if linha == -1:    
+                    if linha == -1:
                         vez_de += 1
                     if verifica(tabuleiro.astype(int), linha, col):
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
