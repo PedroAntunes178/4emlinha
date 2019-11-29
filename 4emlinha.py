@@ -39,7 +39,7 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player, linha):
 		if tabuleiro[linha][col] == 0:
 			tabuleiro[linha][col] = player
 			return True
-    return False
+	return False
 
 #esta função retorna True se for feito 4 em linha
 def vitoria(tabuleiro, linha, coluna):
