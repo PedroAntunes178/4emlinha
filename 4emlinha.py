@@ -106,8 +106,7 @@ def vitoria(tabuleiro, linha, coluna):
             else:
                 break;
     except:
-        pass
-
+		pass
 	return False
 
 #esta funão desenha o tabuleiro em pygame
