@@ -35,10 +35,10 @@ def imprimir_tabuleiro(tabuleiro):
 #esta função vê qual é a casa da matriz em que a peça vai ficar e posiciona a peça no tabuleiro
 def colocar_peca_no_tabuleiro(tabuleiro, col, player, linha):
 	linha = 0
-    for linha in range(NUM_LINHAS):
+	for linha in range(NUM_LINHAS):
 		if tabuleiro[linha][col] == 0:
-            tabuleiro[linha][col] = player
-            return True
+			tabuleiro[linha][col] = player
+			return True
     return False
 
 #esta função retorna True se for feito 4 em linha
