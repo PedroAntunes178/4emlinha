@@ -125,7 +125,7 @@ def main():
             if game_over:
                 for k in range(3):
 					for event in pygame.event.get():
-						if event.type == pygame.MOUSEBUTTONDOWN :
+						if event.type == pygame.MOUSEBUTTONDOWN:
 							pos = pygame.mouse.get_pos()
 
                 pygame.draw.rect(screen, BRANCO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , 3*MEDIDA_POR_QUADRADO, 2*MEDIDA_POR_QUADRADO))
