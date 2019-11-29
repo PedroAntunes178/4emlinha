@@ -143,6 +143,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT :
                 sys.exit(0)
+			if event.type == pygame.MOUSEMOTION :
+				pass
             if event.type == pygame.MOUSEBUTTONDOWN :
                 posx = event.pos[0]
                 col = int(math.floor(posx/MEDIDA_POR_QUADRADO))
@@ -150,14 +152,14 @@ def main():
                 if vez_de == 0:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1, linha)):
                         vez_de += 1
-                    if vitoria(tabuleiro, 1):
+                    if vitoria(tabuleiro, linha, col):
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                         game_over = True
                 else:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2, linha)):
                         vez_de += 1
-                    if vitoria(tabuleiro, 2):
+                    if vitoria(tabuleiro, linha, col):
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
                         screen.blit(label, (40,10))
                         game_over = True
@@ -168,7 +170,7 @@ def main():
             if game_over:
                 for k in range(3):
 					for event in pygame.event.get():
-						if event.type == pygame.MOUSEBUTTONDOWN:
+						if event.type == pygame.MOUSEBUTTONDOWN :
 							pos = pygame.mouse.get_pos()
 
                 pygame.draw.rect(screen, BRANCO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , 3*MEDIDA_POR_QUADRADO, 2*MEDIDA_POR_QUADRADO))
