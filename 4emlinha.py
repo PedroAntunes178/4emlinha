@@ -43,28 +43,71 @@ def colocar_peca_no_tabuleiro(tabuleiro, col, player, linha):
 
 #esta função retorna True se for feito 4 em linha
 def vitoria(tabuleiro, peca):
-    # Verificacao horizontal
-    for x in range(NUM_COLUNAS-3):
-        for y in range(NUM_LINHAS):
-            if tabuleiro[y][x] == peca and tabuleiro[y][x+1] == peca and tabuleiro[y][x+2] == peca and tabuleiro[y][x+3] == peca:
-                return True
-    # Verificacao vertical
-    for x in range(NUM_COLUNAS):
-        for y in range(NUM_LINHAS-3):
-            if tabuleiro[y][x] == peca and tabuleiro[y+1][x] == peca and tabuleiro[y+2][x] == peca and tabuleiro[y+3][x] == peca:
-                return True
-    # Verificacao diagonal esquerda -> direita (baixo->cima)
-    for x in range(NUM_COLUNAS-3):
-        for y in range(NUM_LINHAS-3):
-            if tabuleiro[y][x] == peca and tabuleiro[y+1][x+1] == peca and tabuleiro[y+2][x+2] == peca and tabuleiro[y+3][x+3] == peca:
-                return True
-    # Verificacao diagonal direita -> esquerda (cima->baixo)
-    for x in range(NUM_COLUNAS-3):
-        for y in range(3, NUM_LINHAS):
-            if tabuleiro[y][x] == peca and tabuleiro[y-1][x+1] == peca and tabuleiro[y-2][x+2] == peca and tabuleiro[y-3][x+3] == peca:
-                return True
+    h = 1
+    d1 = 1
+    d2 = 1
+    try:
+        if(tabuleiro[linha][coluna] == tabuleiro[linha-1][coluna] == tabuleiro[linha-2][coluna] == tabuleiro[linha-3][coluna]):
+            return True
+    except:
+        pass
 
-    return False
+    try:
+        for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna-x]):
+                h = h+1
+                print ('1:',h)
+                if(h == 4):
+                    return True;
+            else:
+                break;
+        for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna+x]):
+                    h = h+1
+                    print ('1b:',h)
+                    if(h == 4):
+                        return True;
+            else:
+                break;
+    except:
+        pass
+    try:
+         for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna-x]):
+                d1 = d1+1
+                print ('d1:',d1)
+                if(d1 == 4):
+                    return True;
+            else:
+                break;
+         for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna+x]):
+                d1 = d1+1
+                print ('d1.:',d1)
+                if(d1 == 4):
+                    return True;
+            else:
+                break;
+         for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna+x]):
+                d2 = d2+1
+                print ('d2.:',d2)
+                if(d2 == 4):
+                    return True;
+            else:
+                break;
+         for x in [1,2,3]:
+            if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna-x]):
+                d2 = d2+1
+                print ('d2..:',d2)
+                if(d2 == 4):
+                    return True;
+            else:
+                break;
+    except:
+        pass
+
+	return False
 
 #esta funão desenha o tabuleiro em pygame
 def desenhar_tabuleiro(tabuleiro, screen, altura):
