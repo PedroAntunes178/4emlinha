@@ -163,19 +163,23 @@ def main():
                 if vez_de == 0:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1, linha)):
                         vez_de += 1
-                    if vitoria(tabuleiro, linha, col):
+                    elif vitoria(tabuleiro, linha, col):
                         pygame.draw.rect(screen, PRETO, (0, 0, largura, MEDIDA_POR_QUADRADO))
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                         game_over = True
+                    else:
+                        pygame.draw.circle(screen, PECA1, (posx, int(MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
                 else:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2, linha)):
                         vez_de += 1
-                    if vitoria(tabuleiro, linha, col):
+                    elif vitoria(tabuleiro, linha, col):
                         pygame.draw.rect(screen, PRETO, (0, 0, largura, MEDIDA_POR_QUADRADO))
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
                         screen.blit(label, (40,10))
                         game_over = True
+                    else:
+                        pygame.draw.circle(screen, PECA2, (posx, int(MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
                 vez_de += 1
                 vez_de = vez_de%2
                 desenhar_tabuleiro(tabuleiro, screen, altura)
