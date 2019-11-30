@@ -164,6 +164,7 @@ def main():
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1, linha)):
                         vez_de += 1
                     if vitoria(tabuleiro, linha, col):
+                        pygame.draw.rect(screen, PRETO, (0, 0, largura, MEDIDA_POR_QUADRADO))
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                         game_over = True
@@ -171,6 +172,7 @@ def main():
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2, linha)):
                         vez_de += 1
                     if vitoria(tabuleiro, linha, col):
+                        pygame.draw.rect(screen, PRETO, (0, 0, largura, MEDIDA_POR_QUADRADO))
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
                         screen.blit(label, (40,10))
                         game_over = True
@@ -184,8 +186,8 @@ def main():
                     pygame.draw.rect(screen, BRANCO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , 3*MEDIDA_POR_QUADRADO, 2*MEDIDA_POR_QUADRADO))
                     time_num = myfont.render(str(3-k), 1, PRETO)
                     screen.blit(time_num, (int(largura/2),int(altura/2)))
-                    pygame.draw.rect(screen, VERDE, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO), MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO)
-                    for event in pygame.event.get():
+                    pygame.draw.rect(screen, VERDE, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO), MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
+                    for event in pygame.event.get() :
                         if event.type == pygame.MOUSEBUTTONDOWN :
                             pos = pygame.mouse.get_pos()
                             if int((largura-3*MEDIDA_POR_QUADRADO)/2) < pos[0] and int((largura-3*MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO < pos[1] and pos[0] < int((largura-MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO and pos[1] < int((altura-MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO:
