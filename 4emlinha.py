@@ -21,11 +21,6 @@ VERDE = (0, 255, 0)
 ROXO = (255, 0, 255)
 CINZENTO = (150,150,150)
 
-class botao():
-    def __init__():
-        pass
-    def clicked():
-        pass
 #esta função está a criar uma matriz de zeros, isto para simular o nosso tabuleiro com x colunas e y linhas
 def criar_tabuleiro():
     tabuleiro = np.zeros((NUM_LINHAS,NUM_COLUNAS))
@@ -58,7 +53,7 @@ def vitoria(tabuleiro, linha, coluna):
         for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna-x]):
                 h = h+1
-                print('1:',h)
+                #print('1:',h)
                 if(h == 4):
                     return True
             else:
@@ -66,7 +61,7 @@ def vitoria(tabuleiro, linha, coluna):
         for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna+x]):
                 h = h+1
-                print ('1b:',h)
+                #print ('1b:',h)
                 if(h == 4):
                     return True
             else:
@@ -77,7 +72,7 @@ def vitoria(tabuleiro, linha, coluna):
         for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna-x]):
                 d1 = d1+1
-                print('d1:',d1)
+                #print('d1:',d1)
                 if(d1 == 4):
                     return True
             else:
@@ -85,7 +80,7 @@ def vitoria(tabuleiro, linha, coluna):
         for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna+x]):
                 d1 = d1+1
-                print ('d1.:',d1)
+                #print ('d1.:',d1)
                 if(d1 == 4):
                     return True
             else:
@@ -93,7 +88,7 @@ def vitoria(tabuleiro, linha, coluna):
         for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna+x]):
                 d2 = d2+1
-                print('d2.:',d2)
+                #print('d2.:',d2)
                 if(d2 == 4):
                     return True
             else:
@@ -101,7 +96,7 @@ def vitoria(tabuleiro, linha, coluna):
         for x in [1,2,3]:
             if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna-x]):
                 d2 = d2+1
-                print('d2..:',d2)
+                #print('d2..:',d2)
                 if(d2 == 4):
                     return True
             else:
@@ -186,26 +181,35 @@ def main():
                 #imprimir_tabuleiro(tabuleiro)
 
             if game_over:
-                pygame.draw.rect(screen, BRANCO, (int((largura-5*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , 5*MEDIDA_POR_QUADRADO, 2*MEDIDA_POR_QUADRADO))
                 pygame.draw.rect(screen, PRETO, (int((largura-5*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2), 5*MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
                 pygame.draw.rect(screen, BRANCO, (int((largura-5*MEDIDA_POR_QUADRADO)/2)+4, int((altura-MEDIDA_POR_QUADRADO)/2)+4, 5*MEDIDA_POR_QUADRADO-8, MEDIDA_POR_QUADRADO-8))
                 label = myfont.render("Restart!", 1, PRETO)
                 screen.blit(label, (int((largura-3*MEDIDA_POR_QUADRADO)/2)+2, int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO)+2))
                 for k in range(3):
+                    pygame.draw.rect(screen, BRANCO, (int((largura-5*MEDIDA_POR_QUADRADO)/2), int((altura+MEDIDA_POR_QUADRADO)/2) , 5*MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
                     time_num = myfont.render(str(3-k), 1, PRETO)
-                    screen.blit(time_num, (int(largura/2),int((altura+2*MEDIDA_POR_QUADRADO)/2)))
+                    screen.blit(time_num, (int(largura/2),int((altura+MEDIDA_POR_QUADRADO)/2)))
                     for event in pygame.event.get() :
+                        if event.type == pygame.MOUSEMOTION :
+                            pos = pygame.mouse.get_pos()
+                            if int((largura-5*MEDIDA_POR_QUADRADO)/2) < pos[0] and int((altura-MEDIDA_POR_QUADRADO)/2) < pos[1] and pos[0] < int((largura+5*MEDIDA_POR_QUADRADO)/2) and pos[1] < int((altura+MEDIDA_POR_QUADRADO)/2):
+                                pygame.draw.rect(screen, CINZENTO, (int((largura-5*MEDIDA_POR_QUADRADO)/2)+4, int((altura-MEDIDA_POR_QUADRADO)/2)+4, 5*MEDIDA_POR_QUADRADO-8, MEDIDA_POR_QUADRADO-8))
+                                label = myfont.render("Restart!", 1, PRETO)
+                                screen.blit(label, (int((largura-3*MEDIDA_POR_QUADRADO)/2)+2, int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO)+2))
+                            else:
+                                pygame.draw.rect(screen, BRANCO, (int((largura-5*MEDIDA_POR_QUADRADO)/2)+4, int((altura-MEDIDA_POR_QUADRADO)/2)+4, 5*MEDIDA_POR_QUADRADO-8, MEDIDA_POR_QUADRADO-8))
+                                label = myfont.render("Restart!", 1, PRETO)
+                                screen.blit(label, (int((largura-3*MEDIDA_POR_QUADRADO)/2)+2, int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO)+2))
                         if event.type == pygame.MOUSEBUTTONDOWN :
                             pos = pygame.mouse.get_pos()
-                            if int((largura-3*MEDIDA_POR_QUADRADO)/2) < pos[0] and int((altura-MEDIDA_POR_QUADRADO)/2) < pos[1] and pos[0] < int((largura-MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO and pos[1] < int((altura-MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO:
-                                pygame.draw.rect(screen, BRANCO, (int((largura-5*MEDIDA_POR_QUADRADO)/2)+4, int((altura-MEDIDA_POR_QUADRADO)/2)+4, 5*MEDIDA_POR_QUADRADO-8, int(MEDIDA_POR_QUADRADO)-8))
+                            if int((largura-5*MEDIDA_POR_QUADRADO)/2) < pos[0] and int((altura-MEDIDA_POR_QUADRADO)/2) < pos[1] and pos[0] < int((largura+5*MEDIDA_POR_QUADRADO)/2) and pos[1] < int((altura+MEDIDA_POR_QUADRADO)/2):
                                 game_over = False
                                 tabuleiro = criar_tabuleiro()
                                 desenhar_tabuleiro(tabuleiro, screen, altura)
-                                k = 3
+                                pygame.draw.rect(screen, PRETO, (0, 0, largura, MEDIDA_POR_QUADRADO))
+                                k = -1
 
                     pygame.display.update()
                     time.sleep(1.00)
-                desenhar_tabuleiro(tabuleiro, screen, altura)
 
 main()
