@@ -205,11 +205,11 @@ def main():
                             if int((largura-5*MEDIDA_POR_QUADRADO)/2) < pos[0] and int((altura-MEDIDA_POR_QUADRADO)/2) < pos[1] and pos[0] < int((largura+5*MEDIDA_POR_QUADRADO)/2) and pos[1] < int((altura+MEDIDA_POR_QUADRADO)/2):
                                 game_over = False
                                 tabuleiro = criar_tabuleiro()
-                                desenhar_tabuleiro(tabuleiro, screen, altura)
                                 pygame.draw.rect(screen, PRETO, (0, 0, largura, MEDIDA_POR_QUADRADO))
                                 k = -1
 
                     pygame.display.update()
                     time.sleep(1.00)
+                desenhar_tabuleiro(tabuleiro, screen, altura)
 
 main()
