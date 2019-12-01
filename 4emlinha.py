@@ -36,10 +36,9 @@ def imprimir_tabuleiro(tabuleiro):
 
 #esta função vê qual é a casa da matriz em que a peça vai ficar e posiciona a peça no tabuleiro
 def colocar_peca_no_tabuleiro(tabuleiro, col, player, linha):
-    linha = 0
-    for linha in range(NUM_LINHAS):
-        if tabuleiro[linha][col] == 0:
-            tabuleiro[linha][col] = player
+    for linha[0] in range(NUM_LINHAS):
+        if tabuleiro[linha[0]][col] == 0:
+            tabuleiro[linha[0]][col] = player
             return True
     return False
 
@@ -159,27 +158,27 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN :
                 posx = event.pos[0]
                 col = int(math.floor(posx/MEDIDA_POR_QUADRADO))
-                linha = 0
+                linha = [0]
                 if vez_de == 0:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 1, linha)):
                         vez_de += 1
-                    elif vitoria(tabuleiro, linha, col):
+                    elif vitoria(tabuleiro, linha[0], col):
                         pygame.draw.rect(screen, PRETO, (0, 0, largura, MEDIDA_POR_QUADRADO))
                         label = myfont.render("Player 1 wins!!", 1, PECA1)
                         screen.blit(label, (40,10))
                         game_over = True
                     else:
-                        pygame.draw.circle(screen, PECA1, (posx, int(MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
+                        pygame.draw.circle(screen, PECA2, (posx, int(MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
                 else:
                     if not(colocar_peca_no_tabuleiro(tabuleiro, col, 2, linha)):
                         vez_de += 1
-                    elif vitoria(tabuleiro, linha, col):
+                    elif vitoria(tabuleiro, linha[0], col):
                         pygame.draw.rect(screen, PRETO, (0, 0, largura, MEDIDA_POR_QUADRADO))
                         label = myfont.render("Player 2 wins!!", 1, PECA2)
                         screen.blit(label, (40,10))
                         game_over = True
                     else:
-                        pygame.draw.circle(screen, PECA2, (posx, int(MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
+                        pygame.draw.circle(screen, PECA1, (posx, int(MEDIDA_POR_QUADRADO/2)), RAIO_PECA)
                 vez_de += 1
                 vez_de = vez_de%2
                 desenhar_tabuleiro(tabuleiro, screen, altura)
