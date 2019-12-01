@@ -190,6 +190,9 @@ def main():
                     time_num = myfont.render(str(3-k), 1, PRETO)
                     screen.blit(time_num, (int(largura/2),int(altura/2)))
                     pygame.draw.rect(screen, PRETO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO), MEDIDA_POR_QUADRADO, int(MEDIDA_POR_QUADRADO/2)))
+                    pygame.draw.rect(screen, BRANCO, (int((largura-3*MEDIDA_POR_QUADRADO)/2)+1, int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO)+1, MEDIDA_POR_QUADRADO-2, int(MEDIDA_POR_QUADRADO/2)-2))
+                    label = myfont.render("Restart!", 1, PRETO)
+                    screen.blit(label, (int((largura-3*MEDIDA_POR_QUADRADO)/2)+2, int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO)+2))
                     for event in pygame.event.get() :
                         if event.type == pygame.MOUSEBUTTONDOWN :
                             pos = pygame.mouse.get_pos()
