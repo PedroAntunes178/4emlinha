@@ -19,6 +19,7 @@ PECA1 = (225, 0, 0)
 PECA2 = (0, 225, 225)
 VERDE = (0, 255, 0)
 ROXO = (255, 0, 255)
+CINZENTO = (150,150,150)
 
 class botao():
     def __init__():
@@ -186,18 +187,18 @@ def main():
 
             if game_over:
                 for k in range(3):
-                    pygame.draw.rect(screen, BRANCO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , 3*MEDIDA_POR_QUADRADO, 2*MEDIDA_POR_QUADRADO))
+                    pygame.draw.rect(screen, BRANCO, (int((largura-5*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2) , 5*MEDIDA_POR_QUADRADO, 2*MEDIDA_POR_QUADRADO))
                     time_num = myfont.render(str(3-k), 1, PRETO)
                     screen.blit(time_num, (int(largura/2),int(altura/2)))
-                    pygame.draw.rect(screen, PRETO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO), MEDIDA_POR_QUADRADO, int(MEDIDA_POR_QUADRADO/2)))
-                    pygame.draw.rect(screen, BRANCO, (int((largura-3*MEDIDA_POR_QUADRADO)/2)+1, int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO)+1, MEDIDA_POR_QUADRADO-2, int(MEDIDA_POR_QUADRADO/2)-2))
+                    pygame.draw.rect(screen, PRETO, (int((largura-5*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2), 5*MEDIDA_POR_QUADRADO, int(MEDIDA_POR_QUADRADO)))
+                    pygame.draw.rect(screen, BRANCO, (int((largura-5*MEDIDA_POR_QUADRADO)/2)+4, int((altura-MEDIDA_POR_QUADRADO)/2)+4, 5*MEDIDA_POR_QUADRADO-8, int(MEDIDA_POR_QUADRADO)-8))
                     label = myfont.render("Restart!", 1, PRETO)
                     screen.blit(label, (int((largura-3*MEDIDA_POR_QUADRADO)/2)+2, int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO)+2))
                     for event in pygame.event.get() :
                         if event.type == pygame.MOUSEBUTTONDOWN :
                             pos = pygame.mouse.get_pos()
-                            if int((largura-3*MEDIDA_POR_QUADRADO)/2) < pos[0] and int((largura-3*MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO < pos[1] and pos[0] < int((largura-MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO and pos[1] < int((altura-MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO:
-                                pygame.draw.rect(screen, ROXO, (int((largura-3*MEDIDA_POR_QUADRADO)/2), int((largura-3*MEDIDA_POR_QUADRADO)/2+MEDIDA_POR_QUADRADO), MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
+                            if int((largura-3*MEDIDA_POR_QUADRADO)/2) < pos[0] and int((altura-MEDIDA_POR_QUADRADO)/2) < pos[1] and pos[0] < int((largura-MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO and pos[1] < int((altura-MEDIDA_POR_QUADRADO)/2)+MEDIDA_POR_QUADRADO:
+                                pygame.draw.rect(screen, BRANCO, (int((largura-5*MEDIDA_POR_QUADRADO)/2)+4, int((altura-MEDIDA_POR_QUADRADO)/2)+4, 5*MEDIDA_POR_QUADRADO-8, int(MEDIDA_POR_QUADRADO)-8))
                                 game_over = False
                                 tabuleiro = criar_tabuleiro()
                                 desenhar_tabuleiro(tabuleiro, screen, altura)
