@@ -181,6 +181,8 @@ def main():
                 #imprimir_tabuleiro(tabuleiro)
 
             if game_over:
+                _time = time.time()
+                print(time)
                 pygame.draw.rect(screen, PRETO, (int((largura-5*MEDIDA_POR_QUADRADO)/2), int((altura-MEDIDA_POR_QUADRADO)/2), 5*MEDIDA_POR_QUADRADO, MEDIDA_POR_QUADRADO))
                 pygame.draw.rect(screen, BRANCO, (int((largura-5*MEDIDA_POR_QUADRADO)/2)+4, int((altura-MEDIDA_POR_QUADRADO)/2)+4, 5*MEDIDA_POR_QUADRADO-8, MEDIDA_POR_QUADRADO-8))
                 label = myfont.render("Restart!", 1, PRETO)
@@ -210,6 +212,8 @@ def main():
 
                     pygame.display.update()
                     time.sleep(1.00)
+                    _time = time.time()
+                    print(time)
                 desenhar_tabuleiro(tabuleiro, screen, altura)
 
 main()
