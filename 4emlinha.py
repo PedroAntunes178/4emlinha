@@ -154,7 +154,6 @@ def main():
                     pygame.draw.circle(janela, PECA2, (posx, int(MEDIDA_POR_QUADRADO/2)), RAIO)
                 pygame.display.update()
 
-
             if event.type == pygame.MOUSEBUTTONDOWN :
                 posx = event.pos[0]
                 col = int(math.floor(posx/MEDIDA_POR_QUADRADO))
