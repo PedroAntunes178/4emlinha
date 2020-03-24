@@ -9,7 +9,7 @@ import time
 #numeros magicos
 NUM_COLUNAS = 7
 NUM_LINHAS = 6
-MEDIDA_POR_QUADRADO = 100 #isto está em pixeis
+MEDIDA_POR_QUADRADO = 150 #isto está em pixeis
 RAIO = int(MEDIDA_POR_QUADRADO/2 - 5)
 # definição de cores
 AZUL_NEEC = (0, 157, 224)
