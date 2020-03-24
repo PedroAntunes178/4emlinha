@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Dec  4 15:52:54 2019
+
+@author: Mariana
+"""
+
 #importes
 import numpy as np
 import pygame
@@ -51,11 +58,14 @@ def vitoria(tabuleiro, linha, coluna):
         pass
     try:
         for x in [1,2,3]:
-            if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna-x]):
-                h = h+1
-                #print('1:',h)
-                if(h == 4):
-                    return True
+            if coluna-x >= 0:
+                if(tabuleiro[linha][coluna] == tabuleiro[linha][coluna-x]):
+                    h = h+1
+                    #print('1:',h)
+                    if(h == 4):
+                        return True
+                else:
+                    break
             else:
                 break
         for x in [1,2,3]:
@@ -70,11 +80,14 @@ def vitoria(tabuleiro, linha, coluna):
         pass
     try:
         for x in [1,2,3]:
-            if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna-x]):
-                d1 = d1+1
-                #print('d1:',d1)
-                if(d1 == 4):
-                    return True
+            if linha-x or coluna-x:
+                if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna-x]):
+                    d1 = d1+1
+                    #print('d1:',d1)
+                    if(d1 == 4):
+                        return True
+                else:
+                    break
             else:
                 break
         for x in [1,2,3]:
@@ -90,19 +103,25 @@ def vitoria(tabuleiro, linha, coluna):
 
     try:
         for x in [1,2,3]:
-            if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna+x]):
-                d2 = d2+1
-                #print('d2.:',d2)
-                if(d2 == 4):
-                    return True
+            if linha-x >= 0:
+                if(tabuleiro[linha][coluna] == tabuleiro[linha-x][coluna+x]):
+                    d2 = d2+1
+                    #print('d2.:',d2)
+                    if(d2 == 4):
+                        return True
+                else:
+                    break
             else:
-                break;
+                break
         for x in [1,2,3]:
-            if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna-x]):
-                d2 = d2+1
-                #print('d2..:',d2)
-                if(d2 == 4):
-                    return True
+            if coluna-x >=0:
+                if(tabuleiro[linha][coluna] == tabuleiro[linha+x][coluna-x]):
+                    d2 = d2+1
+                    #print('d2..:',d2)
+                    if(d2 == 4):
+                        return True
+                else:
+                    break
             else:
                 break
     except:
